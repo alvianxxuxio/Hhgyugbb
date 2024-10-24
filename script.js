@@ -1,121 +1,136 @@
-// toggle icon navbar
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const recommendedButtons = document.getElementById('recommended-buttons');
 
-menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-}
+        sendBtn.addEventListener('click', () => {
+            const message = userInput.value;
+            if (message.trim()) {
+                addMessageToChat('user', message);
+                showLoadingDots();
+                hideRecommendedButtons();
+                sendToAPI(message);
+                userInput.value = '';
+            }
+        });
 
-//scroll sections
-let section = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
-
-window.onscroll = () => {
-    section.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 100;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if(top >= offset && top < offset + height) {
-           // active navbar links
-           navLinks.forEach(links => {
-            links.classList.remove('active');
-            document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-           });
-           //active section for animation scroll
-           sec.classList.add('show-animate')
+        function sendRecommended(text) {
+            addMessageToChat('user', text);
+            showLoadingDots();
+            hideRecommendedButtons();
+            sendToAPI(text);
         }
-        // if want to use animation scroll that repets on scroll
-        else {
-            sec.classList.remove('show-animate');
+
+        function hideRecommendedButtons() {
+            recommendedButtons.style.display = 'none';
         }
+
+        function showLoadingDots() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.classList.add('message', 'bot-message');
+            loadingDiv.style.backgroundColor = 'transparent';
+            loadingDiv.innerHTML = `<div class="loading-dots"><span></span><span></span><span></span></div>`;
+            loadingDiv.id = 'loading-dots';
+            chatBox.appendChild(loadingDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removeLoadingDots() {
+            const loadingDots = document.getElementById('loading-dots');
+            if (loadingDots) {
+                loadingDots.remove();
+            }
+        }
+
+        function addMessageToChat(sender, message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.innerHTML = sender === 'bot' ? parseMarkdown(message) : message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function escapeHtml(html) {
+            return html
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function parseMarkdown(text) {
+            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
+
+            text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            text = text.replace(/_(.*?)_/g, '<em>$1</em>');
+
+            text = parseCodeBlocks(text);
+
+            return text;
+        }
+
+        let codeBlockCount = 0; // To keep track of code blocks
+
+function parseCodeBlocks(text) {
+    const codeBlockRegex = /```(.*?)\n([\s\S]*?)```/g;
+    text = text.replace(codeBlockRegex, (match, p1, p2) => {
+        const codeType = p1.trim();
+        const code = escapeHtml(p2.trim());
+        const uniqueId = `code-box-${codeBlockCount}`; // Unique ID for each code block
+        const buttonId = `copy-btn-${codeBlockCount}`; // Unique ID for each button
+        codeBlockCount++; // Increment the count for the next code block
+
+        return `<br>
+            <div class="code-container">
+                <div class="code-header">
+                    <span>${escapeHtml(codeType)}</span>
+                    <span><button onclick="copyToClipboard('${uniqueId}', '${buttonId}')" id="${buttonId}" class="send-button"><i class="fa-regular fa-clipboard"></i> Copy</button></span>
+                </div>
+                <pre id="${uniqueId}"><code class="language-${escapeHtml(codeType)}">${code}</code></pre>
+            </div><br>
+        `;
     });
 
-    // sticky header
-    let header = document.querySelector('header');
-
-    header.classList.toggle('sticky', window.scrollY > 100);
-
-    // remove toggle icon and navbar when click navbar links scroll
-    menuIcon.classList.remove('bx-x');
-    navbar.classList.remove('active');
-
-    //anmation footer scroll
-    let footer = document.querySelector('footer');
-
-    footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
+    return text;
 }
-// animation congrats
 
-const Confettiful = function(el) {
-    this.el = el;
-    this.containerEl = null;
-    
-    this.confettiFrequency = 3;
-    this.confettiColors = ['#EF2964', '#00C09D', '#754ef9', '#48485E','#ededed'];
-    this.confettiAnimations = ['slow', 'medium', 'fast'];
-    
-    this._setupElements();
-    this._renderConfetti();
-  };
-  
-  Confettiful.prototype._setupElements = function() {
-    const containerEl = document.createElement('div');
-    const elPosition = this.el.style.position;
-    
-    if (elPosition !== 'relative' || elPosition !== 'absolute') {
-      this.el.style.position = 'relative';
-    }
-    
-    containerEl.classList.add('confetti-container');
-    
-    this.el.appendChild(containerEl);
-    
-    this.containerEl = containerEl;
-  };
-  
-  Confettiful.prototype._renderConfetti = function() {
-    this.confettiInterval = setInterval(() => {
-      const confettiEl = document.createElement('div');
-      const confettiSize = (Math.floor(Math.random() * 3) + 7) + 'px';
-      const confettiBackground = this.confettiColors[Math.floor(Math.random() * this.confettiColors.length)];
-      const confettiLeft = (Math.floor(Math.random() * this.el.offsetWidth)) + 'px';
-      const confettiAnimation = this.confettiAnimations[Math.floor(Math.random() * this.confettiAnimations.length)];
-      
-      confettiEl.classList.add('confetti', 'confetti--animation-' + confettiAnimation);
-      confettiEl.style.left = confettiLeft;
-      confettiEl.style.width = confettiSize;
-      confettiEl.style.height = confettiSize;
-      confettiEl.style.backgroundColor = confettiBackground;
-      
-      confettiEl.removeTimeout = setTimeout(function() {
-        confettiEl.parentNode.removeChild(confettiEl);
-      }, 3000);
-      
-      this.containerEl.appendChild(confettiEl);
-    }, 25);
-  };
-  
-  
-  function start(){
-    new Confettiful(document.querySelector('.js-container'));
-    let congratEl = document.querySelector('.congrats');
-    congratEl.style.display = 'block';
-  }
-  
-  
-  let test = document.querySelector('.recruter');
-  test.addEventListener('click', start );
+function copyToClipboard(codeBoxId, buttonId) {
+    var code = document.getElementById(codeBoxId).textContent; // Get the code from the specific code box
+    var button = document.getElementById(buttonId); // Get the specific button
+    var originalText = button.innerText; // Save the original button text
+    var newText = 'Copied ✅'; // New text while copying
 
-  //button endanim
-  
-  const endanim = document.querySelector('#endanim');
-  endanim.addEventListener('click',() => {
-    const el = document.querySelector('.congrats');
-  const congratsEl = document.querySelector('.confetti-container');
-    congratsEl.style.display = 'none';
-    el.style.display = 'none';
-  });
-  
+    button.innerHTML = `Copied <i class='fas fa-check'></i>`; // Change button text to indicate action
+
+    navigator.clipboard.writeText(code)
+        .then(() => {
+            showToast("Kode berhasil disalin!");
+        })
+        .catch(err => {
+            console.error('Async: Could not copy text: ', err);
+        })
+        .finally(() => {
+            // Revert button text back to original after 4 seconds
+            setTimeout(() => {
+                button.innerText = originalText; // Restore original text
+            }, 4000);
+        });
+}
+
+        async function sendToAPI(text) {
+            try {
+                const response = await fetch(`https://api.alvianuxio.my.id/api/openai?message=${encodeURIComponent(text)}&apikey=aluxi`);
+                const data = await response.json();
+
+                removeLoadingDots();
+                if (data && data.data && data.data.response) {
+                    addMessageToChat('bot', data.data.response);
+                } else {
+                    addMessageToChat('bot', 'Sorry, I could not understand the response from the server.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                removeLoadingDots();
+                addMessageToChat('bot', 'Sorry, something went wrong.');
+            }
+        }
