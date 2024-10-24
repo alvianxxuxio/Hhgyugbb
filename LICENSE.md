@@ -1,4 +1,4 @@
-# Custom License
+# LTS STUDIO LLC. Proprietary License
 
 Copyright (c) 2024  LTS STUDIO LLC.
 
