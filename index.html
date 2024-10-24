@@ -13,10 +13,175 @@
   <meta property="og:url" content="https://api.alvianuxio.my.id" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style type="text/css">
-  @import url("data:text/css;base64,ICAgICAgICBib2R5IHsNCiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsNCiAgICAgICAgICAgIG1hcmdpbjogMDsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlOw0KICAgICAgICAgICAgaGVpZ2h0OiAxMDAlOw0KICAgICAgICAgICAgb3ZlcmZsb3cteTogaGlkZGVuICFpbXBvcnRhbnQ7DQogICAgICAgICAgICBhbmltYXRpb246IGZhZGVJbiAwLjhzIGVhc2UtaW4tb3V0Ow0KICAgICAgICB9DQoNCiAgICAgICAuY2hhdC1jb250YWluZXIgew0KICAgIG1hcmdpbi10b3A6IDMwcHg7DQogICAgZGlzcGxheTogZmxleDsNCiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOw0KICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsNCiAgICBoZWlnaHQ6IG8zdmg7DQogICAgd2lkdGg6IDk1JTsNCiAgICBtYXgtd2lkdGg6IDg5OXB4Ow0KICAgIG1hcmdpbjogMCBhdXRvOw0KICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlOw0KICAgIGJvcmRlcjogMHB4IHNvbGlkICNkZGQ7DQogICAgYm9yZGVyLXJhZGl1czogMTBweDsNCiAgICBvdmVyZmxvdzogbm9uZTsNCiAgICBvcGFjaXR5OiAwOw0KICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSg1MHB4KTsNCiAgICBhbmltYXRpb246IGZhZGVJblVwIDAuOHMgZWFzZS1pbi1vdXQgZm9yd2FyZHM7DQp9DQoNCi5jaGF0LWJveCB7DQogICAgZmxleC1ncm93OiAxOw0KICAgIHBhZGRpbmc6IDEwcHg7DQogICAgb3ZlcmZsb3cteTogYXV0bzsNCiAgICBib3JkZXItYm90dG9tOiAwcHggc29saWQgI2RkZDsNCiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuNHMgZWFzZTsNCn0NCg0KLm1lc3NhZ2Ugew0KICAgIG1hcmdpbjogNXB4IDA7DQogICAgcGFkZGluZzogMTBweDsNCiAgICBib3JkZXItcmFkaXVzOiAxNXB4Ow0KICAgIG9wYWNpdHk6IDA7DQogICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDIwcHgpOw0KICAgIGFuaW1hdGlvbjogbWVzc2FnZUluIDAuNXMgZWFzZSBmb3J3YXJkczsNCiAgICBtYXgtd2lkdGg6IDYwJTsgLyogTWVtYmF0YXNpIGxlYmFyIHBlc2FuIGFnYXIgdGlkYWsgdGVybGFsdSBsZWJhciAqLw0KfQ0KDQoudXNlci1tZXNzYWdlIHsNCiAgICBtYXJnaW4tbGVmdDogYXV0bzsgLyogTWVuZW1wYXRrYW4gcGVzYW4gdXNlciBkaSBzZWJlbGFoIGthbmFuICovDQogICAgYmFja2dyb3VuZC1jb2xvcjogIzgzQ0VDNzsNCiAgICB0ZXh0LWFsaWduOiByaWdodDsNCiAgICB3aWR0aDogMTAwJTsgLyogTWVuZHVrdW5nIHRhbXBpbGFuIGxlYmFyIHlhbmcgZmxla3NpYmVsICovDQogICAgbWF4LXdpZHRoOiA2MCU7IC8qIFBlc2FuIHVzZXIgbWFrc2ltYWwgNjAlIGRhcmkgbGViYXIga29udGFpbmVyICovDQogICAgZGlzcGxheTogZmxleDsNCiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kOyAvKiBQZXNhbiB1c2VyIGRpc2VsYXJhc2thbiBrZSBrYW5hbiAqLw0KfQ0KDQouYm90LW1lc3NhZ2Ugew0KICAgIG1hcmdpbi1yaWdodDogYXV0bzsgLyogTWVuZW1wYXRrYW4gcGVzYW4gYm90IGRpIHNlYmVsYWgga2lyaSAqLw0KICAgIGJhY2tncm91bmQtY29sb3I6ICNDMkU0RTQ7DQogICAgd2lkdGg6IDEwMCU7IC8qIE1lbmR1a3VuZyB0YW1waWxhbiBsZWJhciB5YW5nIGZsZWtzaWJlbCAqLw0KICAgIG1heC13aWR0aDogNzAlOyAvKiBQZXNhbiBib3QgbWFrc2ltYWwgNjAlIGRhcmkgbGViYXIga29udGFpbmVyICovDQogICAgZGlzcGxheTogbGVmdDsNCiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7IC8qIFBlc2FuIGJvdCBkaXNlbGFyYXNrYW4ga2Uga2lyaSAqLw0KfQ0KDQogICAgICAgIC5jb2RlLWJveCB7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjBmMGYwOw0KICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDE4cHg7DQogICAgICAgICAgICBwYWRkaW5nOiAxMHB4Ow0KICAgICAgICAgICAgb3ZlcmZsb3cteDogYXV0bzsNCiAgICAgICAgICAgIHdoaXRlLXNwYWNlOiBwcmU7DQogICAgICAgICAgICBtYXJnaW46IDVweCAwOw0KICAgICAgICAgICAgZm9udC1mYW1pbHk6IG1vbm9zcGFjZTsNCiAgICAgICAgfQ0KDQogICAgICAgIC5pbnB1dC1hcmVhIHsNCiAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7DQogICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyOw0KICAgICAgICAgICAgcGFkZGluZzogMTBweDsNCiAgICAgICAgICAgIGJvcmRlci10b3A6IDBweCBzb2xpZCAjZGRkOw0KICAgICAgICAgICAgb3BhY2l0eTogMDsNCiAgICAgICAgICAgIGFuaW1hdGlvbjogZmFkZUluRG93biAwLjhzIGVhc2UgZm9yd2FyZHM7DQogICAgICAgICAgICBhbmltYXRpb24tZGVsYXk6IDFzOw0KICAgICAgICB9DQoNCiAgICAgICAgI3VzZXItaW5wdXQgew0KICAgICAgICAgICAgZmxleC1ncm93OiAxOw0KICAgICAgICAgICAgcGFkZGluZzogOHB4Ow0KICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwMHB4Ow0KICAgICAgICAgICAgb3V0bGluZTogbm9uZTsNCiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTZweDsNCiAgICAgICAgICAgIHRyYW5zaXRpb246IGJvcmRlciAwLjNzIGVhc2UsIGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlOw0KICAgICAgICB9DQoNCiAgICAgICAgI3NlbmQtYnRuIHsNCiAgICAgICAgICAgIG1hcmdpbi1sZWZ0OiAxMHB4Ow0KICAgICAgICAgICAgcGFkZGluZzogMTBweDsNCiAgICAgICAgICAgIHdpZHRoOiAxMDBweDsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDdiZmY7DQogICAgICAgICAgICBjb2xvcjogd2hpdGU7DQogICAgICAgICAgICBib3JkZXI6IG5vbmU7DQogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxMDBweDsNCiAgICAgICAgICAgIGN1cnNvcjogcG9pbnRlcjsNCiAgICAgICAgICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC40cyBlYXNlLCB0cmFuc2Zvcm0gMC4ycyBlYXNlOw0KICAgICAgICB9DQogICAgICAgIC5zZW5kLWJ1dHRvbiB7DQogICAgICAgICAgICBtYXJnaW4tbGVmdDogMTBweDsNCiAgICAgICAgICAgIHdpZHRoOiAxMDBweDsNCiAgICAgICAgICAgIHBhZGRpbmc6IDZweDsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDdiZmY7DQogICAgICAgICAgICBjb2xvcjogd2hpdGU7DQogICAgICAgICAgICBib3JkZXI6IG5vbmU7DQogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxMDBweDsNCiAgICAgICAgICAgIGN1cnNvcjogcG9pbnRlcjsNCiAgICAgICAgICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC40cyBlYXNlLCB0cmFuc2Zvcm0gMC4ycyBlYXNlOw0KICAgICAgICB9DQoNCiAgICAgICAgI3NlbmQtYnRuOmhvdmVyIHsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDU2YjM7DQogICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTNweCk7DQogICAgICAgIH0NCg0KICAgICAgICAubG9hZGluZy1kb3RzIHsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50Ow0KICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7DQogICAgICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyOw0KICAgICAgICAgICAgY29sb3I6IHdoaXRlOw0KICAgICAgICAgICAgcGFkZGluZzogOHB4Ow0KICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTVweDsNCiAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsNCiAgICAgICAgICAgIHdpZHRoOiA1MHB4Ow0KICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyOw0KICAgICAgICB9DQoNCiAgICAgICAgLmxvYWRpbmctZG90cyBzcGFuIHsNCiAgICAgICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsNCiAgICAgICAgICAgIHdpZHRoOiA4cHg7DQogICAgICAgICAgICBoZWlnaHQ6IDhweDsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6IGJsYWNrOw0KICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNTAlOw0KICAgICAgICAgICAgbWFyZ2luLXJpZ2h0OiA1cHg7DQogICAgICAgICAgICBhbmltYXRpb246IGJvdW5jZSAwLjNzIGluZmluaXRlIGFsdGVybmF0ZTsNCiAgICAgICAgfQ0KDQogICAgICAgIC5sb2FkaW5nLWRvdHMgc3BhbjpudGgtY2hpbGQoMikgew0KICAgICAgICAgICAgYW5pbWF0aW9uLWRlbGF5OiAwLjFzOw0KICAgICAgICB9DQoNCiAgICAgICAgLmxvYWRpbmctZG90cyBzcGFuOm50aC1jaGlsZCgzKSB7DQogICAgICAgICAgICBhbmltYXRpb24tZGVsYXk6IDAuMnM7DQogICAgICAgIH0NCiAgICAgICAgLm1hdGVyaWFsLXRvYXN0aWZ5IHsNCiAgICBwb3NpdGlvbjogZml4ZWQ7IC8qIFBhc3Rpa2FuIHRvYXN0IGRpdGVtcGF0a2FuIHNlY2FyYSB0ZXRhcCBkaSBhdGFzICovDQogICAgd2lkdGg6IDgwJTsNCiAgICBtYXgtd2lkdGg6IDkwJTsNCiAgICB0b3A6IDEwcHg7IC8qIEphcmFrIGRhcmkgYXRhcyAqLw0KICAgIHJpZ2h0OiAxMHB4OyAvKiBKYXJhayBkYXJpIGthbmFuICovDQogICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZiAhaW1wb3J0YW50OyAvKiBCYWNrZ3JvdW5kIHB1dGloICovDQogICAgY29sb3I6ICMwMDA7IC8qIFRla3MgaGl0YW0gKi8NCiAgICBib3JkZXItcmFkaXVzOiAxMnB4OyAvKiBNZW1idWF0IHN1ZHV0IGJ1bGF0IHNlc3VhaSBNYXRlcmlhbCBZb3UgKi8NCiAgICBwYWRkaW5nOiAxNnB4OyAvKiBQYWRkaW5nIHlhbmcgY3VrdXAgdW50dWsga2VueWFtYW5hbiAqLw0KICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjsgLyogRm9udCB5YW5nIGxlYmloIGJlcnNpaCAqLw0KICAgIGJveC1zaGFkb3c6IDBweCA0cHggNnB4IHJnYmEoMCwgMCwgMCwgMC4xKTsgLyogVGFtYmFoa2FuIGJheWFuZ2FuIGxlbWJ1dCAqLw0KICAgIHotaW5kZXg6IDk5OTk5OyAvKiBUaW5na2F0a2FuIHotaW5kZXggbGViaWggdGluZ2dpICovDQogICAgb3BhY2l0eTogMC45NTsgLyogU2VkaWtpdCB0cmFuc3BhcmFuICovDQp9DQouY29kZS1jb250YWluZXIgew0KICAgICAgICAgICAgbWFyZ2luLXRvcDogNXB4Ow0KICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDE4cHg7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjhmOWZhOw0KICAgICAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjsNCiAgICAgICAgfQ0KDQogICAgICAgIC5jb2RlLWhlYWRlciB7DQogICAgICAgICAgICBkaXNwbGF5OiBmbGV4Ow0KICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjsNCiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsNCiAgICAgICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNlOWVjZWY7DQogICAgICAgICAgICBwYWRkaW5nOiA1cHggMTBweDsNCiAgICAgICAgICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZGRkOw0KICAgICAgICAgICAgZm9udC1zaXplOiAxNHB4Ow0KICAgICAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7DQogICAgICAgICAgICBib3JkZXItcmFkaXVzOiA4cHggOHB4IDAgMDsNCiAgICAgICAgICAgIGNvbG9yOiAjNDk1MDU3Ow0KICAgICAgICB9DQoNCiAgICAgICAgcHJlIHsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDAgMCA1cHggNXB4Ow0KICAgICAgICAgICAgbWFyZ2luOiAwOw0KICAgICAgICAgICAgcGFkZGluZzogMTBweDsNCiAgICAgICAgICAgIG92ZXJmbG93LXg6IGF1dG87DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjhmOWZhOw0KICAgICAgICAgICAgZm9udC1zaXplOiAxMXB4Ow0KICAgICAgICAgICAgd2hpdGUtc3BhY2U6IHByZS13cmFwOw0KICAgICAgICB9DQoNCiAgICAgICAgLmhlYWRlciB7DQogICAgICAgICAgICBwYWRkaW5nOiAxMHB4Ow0KICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyOw0KICAgICAgICAgICAgYm9yZGVyLWJvdHRvbTogMHB4IHNvbGlkICNkZGQ7DQogICAgICAgICAgICBvcGFjaXR5OiAwOw0KICAgICAgICAgICAgYW5pbWF0aW9uOiBmYWRlSW5Eb3duIDAuOHMgZWFzZSBmb3J3YXJkczsNCiAgICAgICAgfQ0KDQogICAgICAgIC5oZWFkZXIgaW1nIHsNCiAgICAgICAgICAgIHdpZHRoOiAyMDBweDsNCiAgICAgICAgICAgIGhlaWdodDogNTBweDsNCiAgICAgICAgICAgIGFuaW1hdGlvbjogZmFkZUluRG93biAxcyBlYXNlIGZvcndhcmRzOw0KICAgICAgICB9DQoNCiAgICAgICAgLmhlYWRlciBwIHsNCiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDsNCiAgICAgICAgICAgIGNvbG9yOiAjNjY2Ow0KICAgICAgICB9DQogICAgICAgIC5jaGF0LWJveCB7DQogICAgICAgICAgYm9yZGVyLXJhZGl1czogMjVweDsNCiAgICAgICAgfQ0KDQogICAgICAgIC5yZWNvbW1lbmRlZC1idXR0b25zIGJ1dHRvbiB7DQogICAgICAgICAgICBtYXJnaW46IDNweDsNCiAgICAgICAgICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50Ow0KICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTAwcHg7DQogICAgICAgICAgICBwYWRkaW5nOiA4cHg7DQogICAgICAgICAgICBib3JkZXI6IDJweCBzb2xpZCAjMDA3YmZmOw0KICAgICAgICAgICAgY29sb3I6ICMwMDdiZmY7DQogICAgICAgICAgICB3aWR0aDogOTUlOw0KICAgICAgICAgICAgZGlzcGxheTogY2VudGVyOw0KICAgICAgICAgICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjRzIGVhc2UsIGNvbG9yIDAuNHMgZWFzZSwgdHJhbnNmb3JtIDAuM3MgZWFzZTsNCiAgICAgICAgfQ0KDQogICAgICAgIC5yZWNvbW1lbmRlZC1idXR0b25zIGJ1dHRvbjpob3ZlciB7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA3YmZmOw0KICAgICAgICAgICAgY29sb3I6IHdoaXRlOw0KICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxLjA1KTsNCiAgICAgICAgfQ==");
-</style>
-<style>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: white;
+            height: 100%;
+            overflow-y: hidden !important;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+       .chat-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: o3vh;
+    width: 95%;
+    max-width: 899px;
+    margin: 0 auto;
+    background-color: white;
+    border: 0px solid #ddd;
+    border-radius: 10px;
+    overflow: none;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.8s ease-in-out forwards;
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 0px solid #ddd;
+    transition: background-color 0.4s ease;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: messageIn 0.5s ease forwards;
+    max-width: 60%; /* Membatasi lebar pesan agar tidak terlalu lebar */
+}
+
+.user-message {
+    margin-left: auto; /* Menempatkan pesan user di sebelah kanan */
+    background-color: #83CEC7;
+    text-align: right;
+    width: 100%; /* Mendukung tampilan lebar yang fleksibel */
+    max-width: 60%; /* Pesan user maksimal 60% dari lebar kontainer */
+    display: flex;
+    justify-content: flex-end; /* Pesan user diselaraskan ke kanan */
+}
+
+.bot-message {
+    margin-right: auto; /* Menempatkan pesan bot di sebelah kiri */
+    background-color: #C2E4E4;
+    width: 100%; /* Mendukung tampilan lebar yang fleksibel */
+    max-width: 70%; /* Pesan bot maksimal 60% dari lebar kontainer */
+    display: left;
+    justify-content: flex-start; /* Pesan bot diselaraskan ke kiri */
+}
+
+        .code-box {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 18px;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 5px 0;
+            font-family: monospace;
+        }
+
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 0px solid #ddd;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+            animation-delay: 1s;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 100px;
+            outline: none;
+            font-size: 16px;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        #send-btn {
+            margin-left: 10px;
+            padding: 10px;
+            width: 100px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background-color 0.4s ease, transform 0.2s ease;
+        }
+        .send-button {
+            margin-left: 10px;
+            width: 100px;
+            padding: 6px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background-color 0.4s ease, transform 0.2s ease;
+        }
+
+        #send-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .loading-dots {
+            background-color: transparent;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+        }
+
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: black;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: bounce 0.3s infinite alternate;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .material-toastify {
+    position: fixed; /* Pastikan toast ditempatkan secara tetap di atas */
+    width: 80%;
+    max-width: 90%;
+    top: 10px; /* Jarak dari atas */
+    right: 10px; /* Jarak dari kanan */
+    background-color: #fff !important; /* Background putih */
+    color: #000; /* Teks hitam */
+    border-radius: 12px; /* Membuat sudut bulat sesuai Material You */
+    padding: 16px; /* Padding yang cukup untuk kenyamanan */
+    font-family: 'Roboto', sans-serif; /* Font yang lebih bersih */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan lembut */
+    z-index: 99999; /* Tingkatkan z-index lebih tinggi */
+    opacity: 0.95; /* Sedikit transparan */
+}
+
         @keyframes bounce {
             from {
                 transform: translateY(0);
@@ -24,7 +189,79 @@
             to {
                 transform: translateY(-6px);
             }
-        }        
+        }
+
+        .code-container {
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 18px;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
+            color: #495057;
+        }
+
+        pre {
+            border-radius: 0 0 5px 5px;
+            margin: 0;
+            padding: 10px;
+            overflow-x: auto;
+            background-color: #f8f9fa;
+            font-size: 11px;
+            white-space: pre-wrap;
+        }
+
+        .header {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 0px solid #ddd;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        .header img {
+            width: 200px;
+            height: 50px;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+        }
+        .chat-box {
+          border-radius: 25px;
+        }
+
+        .recommended-buttons button {
+            margin: 3px;
+            background: transparent;
+            border-radius: 100px;
+            padding: 8px;
+            border: 2px solid #007bff;
+            color: #007bff;
+            width: 95%;
+            display: center;
+            transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
+        }
+
+        .recommended-buttons button:hover {
+            background-color: #007bff;
+            color: white;
+            transform: scale(1.05);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -78,7 +315,7 @@
 @media (max-width: 599px) {
     .chat-container {
         width: 100%;
-        height: 86vh; /* Menggunakan 100vh untuk tinggi penuh pada ponsel */
+        height: 94vh; /* Menggunakan 100vh untuk tinggi penuh pada ponsel */
         overflow: hidden; /* Nonaktifkan scroll */
     }
 }
