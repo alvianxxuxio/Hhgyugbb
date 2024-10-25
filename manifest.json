@@ -1,0 +1,20 @@
+{
+    "name": "Nexoria",
+    "short_name": "Nexoria",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "https://files.catbox.moe/i5htqv.jpg",
+            "sizes": "192x192",
+            "type": "image/jpg"
+        },
+        {
+            "src": "https://files.catbox.moe/3abg1v.jpg",
+            "sizes": "512x512",
+            "type": "image/jpg"
+        }
+    ]
+}
