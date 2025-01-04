@@ -1,35 +1,422 @@
-<!DOCTYPE html>
+<div class="fs"><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexoria</title>
- <meta property="og:title" content="Nexoria" />
-  <meta property="og:description" content="Nexoria adalah platform kecerdasan buatan canggih yang dirancang untuk membantu pengguna dalam berbagai kebutuhan digital, mulai dari percakapan otomatis hingga penciptaan konten kreatif. Dengan dukungan teknologi AI terbaru, Nexoria mampu memahami konteks, memberikan jawaban cerdas, serta menghasilkan gambar dan teks secara intuitif. Mengutamakan desain modern dan responsif, Nexoria dirancang agar dapat diakses dengan mudah di berbagai perangkat, menawarkan pengalaman pengguna yang seamless, elegan, dan efektif dalam setiap interaksi." />
-  <meta property="og:image" content="https://files.catbox.moe/lt2hov.jpg" />
-  <meta property="og:url" content="https://nexoria.ltsstudio.xyz" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.css" rel="stylesheet" />
+    <title>ChatGPT UI</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.css" rel="stylesheet" /><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+  <!-- Link di dalam <head> -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style type="text/css">
-  @import url("data:text/css;base64,Ym9keSB7DQogICAgICAgICAgICBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7DQogICAgICAgICAgICBtYXJnaW46IDA7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsNCiAgICAgICAgICAgIGhlaWdodDogMTAwJTsNCiAgICAgICAgICAgIG92ZXJmbG93LXk6IGhpZGRlbiAhaW1wb3J0YW50Ow0KICAgICAgICAgICAgYW5pbWF0aW9uOiBmYWRlSW4gMC44cyBlYXNlLWluLW91dDsNCiAgICAgICAgfQ0KDQogICAgICAgLmNoYXQtY29udGFpbmVyIHsNCiAgICBtYXJnaW4tdG9wOiAzMHB4Ow0KICAgIGRpc3BsYXk6IGZsZXg7DQogICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsNCiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47DQogICAgaGVpZ2h0OiBvM3ZoOw0KICAgIHdpZHRoOiA5NSU7DQogICAgbWF4LXdpZHRoOiA4OTlweDsNCiAgICBtYXJnaW46IDAgYXV0bzsNCiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsNCiAgICBib3JkZXI6IDBweCBzb2xpZCAjZGRkOw0KICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7DQogICAgb3ZlcmZsb3c6IG5vbmU7DQogICAgb3BhY2l0eTogMDsNCiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoNTBweCk7DQogICAgYW5pbWF0aW9uOiBmYWRlSW5VcCAwLjhzIGVhc2UtaW4tb3V0IGZvcndhcmRzOw0KfQ0KDQouY2hhdC1ib3ggew0KICAgIGZsZXgtZ3JvdzogMTsNCiAgICBwYWRkaW5nOiAxMHB4Ow0KICAgIG92ZXJmbG93LXk6IGF1dG87DQogICAgYm9yZGVyLWJvdHRvbTogMHB4IHNvbGlkICNkZGQ7DQogICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjRzIGVhc2U7DQp9DQoNCi5tZXNzYWdlIHsNCiAgICBtYXJnaW46IDVweCAwOw0KICAgIHBhZGRpbmc6IDEwcHg7DQogICAgYm9yZGVyLXJhZGl1czogMTVweDsNCiAgICBvcGFjaXR5OiAwOw0KICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgyMHB4KTsNCiAgICBhbmltYXRpb246IG1lc3NhZ2VJbiAwLjVzIGVhc2UgZm9yd2FyZHM7DQogICAgbWF4LXdpZHRoOiA2MCU7IC8qIE1lbWJhdGFzaSBsZWJhciBwZXNhbiBhZ2FyIHRpZGFrIHRlcmxhbHUgbGViYXIgKi8NCn0NCg0KLnVzZXItbWVzc2FnZSB7DQogICAgbWFyZ2luLWxlZnQ6IGF1dG87IC8qIE1lbmVtcGF0a2FuIHBlc2FuIHVzZXIgZGkgc2ViZWxhaCBrYW5hbiAqLw0KICAgIGJhY2tncm91bmQtY29sb3I6ICM4M0NFQzc7DQogICAgdGV4dC1hbGlnbjogcmlnaHQ7DQogICAgd2lkdGg6IDEwMCU7IC8qIE1lbmR1a3VuZyB0YW1waWxhbiBsZWJhciB5YW5nIGZsZWtzaWJlbCAqLw0KICAgIG1heC13aWR0aDogNjAlOyAvKiBQZXNhbiB1c2VyIG1ha3NpbWFsIDYwJSBkYXJpIGxlYmFyIGtvbnRhaW5lciAqLw0KICAgIGRpc3BsYXk6IGZsZXg7DQogICAganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDsgLyogUGVzYW4gdXNlciBkaXNlbGFyYXNrYW4ga2Uga2FuYW4gKi8NCn0NCg0KLmJvdC1tZXNzYWdlIHsNCiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87IC8qIE1lbmVtcGF0a2FuIHBlc2FuIGJvdCBkaSBzZWJlbGFoIGtpcmkgKi8NCiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjQzJFNEU0Ow0KICAgIHdpZHRoOiAxMDAlOyAvKiBNZW5kdWt1bmcgdGFtcGlsYW4gbGViYXIgeWFuZyBmbGVrc2liZWwgKi8NCiAgICBtYXgtd2lkdGg6IDcwJTsgLyogUGVzYW4gYm90IG1ha3NpbWFsIDYwJSBkYXJpIGxlYmFyIGtvbnRhaW5lciAqLw0KICAgIGRpc3BsYXk6IGxlZnQ7DQogICAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0OyAvKiBQZXNhbiBib3QgZGlzZWxhcmFza2FuIGtlIGtpcmkgKi8NCn0NCg0KICAgICAgICAuY29kZS1ib3ggew0KICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2YwZjBmMDsNCiAgICAgICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7DQogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxOHB4Ow0KICAgICAgICAgICAgcGFkZGluZzogMTBweDsNCiAgICAgICAgICAgIG92ZXJmbG93LXg6IGF1dG87DQogICAgICAgICAgICB3aGl0ZS1zcGFjZTogcHJlOw0KICAgICAgICAgICAgbWFyZ2luOiA1cHggMDsNCiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7DQogICAgICAgIH0NCg0KICAgICAgICAuaW5wdXQtYXJlYSB7DQogICAgICAgICAgICBkaXNwbGF5OiBmbGV4Ow0KICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjsNCiAgICAgICAgICAgIHBhZGRpbmc6IDEwcHg7DQogICAgICAgICAgICBib3JkZXItdG9wOiAwcHggc29saWQgI2RkZDsNCiAgICAgICAgICAgIG9wYWNpdHk6IDA7DQogICAgICAgICAgICBhbmltYXRpb246IGZhZGVJbkRvd24gMXMgZWFzZSBmb3J3YXJkczsNCiAgICAgICAgICAgIGFuaW1hdGlvbi1kZWxheTogMC41czsNCiAgICAgICAgfQ0KDQogICAgICAgICN1c2VyLWlucHV0IHsNCiAgICAgICAgICAgIGZsZXgtZ3JvdzogMTsNCiAgICAgICAgICAgIHBhZGRpbmc6IDhweDsNCiAgICAgICAgICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7DQogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxMDBweDsNCiAgICAgICAgICAgIG91dGxpbmU6IG5vbmU7DQogICAgICAgICAgICBmb250LXNpemU6IDE2cHg7DQogICAgICAgICAgICB0cmFuc2l0aW9uOiBib3JkZXIgMC4zcyBlYXNlLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTsNCiAgICAgICAgfQ0KDQogICAgICAgICNzZW5kLWJ0biB7DQogICAgICAgICAgICBtYXJnaW4tbGVmdDogMTBweDsNCiAgICAgICAgICAgIHBhZGRpbmc6IDEwcHg7DQogICAgICAgICAgICB3aWR0aDogMTAwcHg7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA3YmZmOw0KICAgICAgICAgICAgY29sb3I6IHdoaXRlOw0KICAgICAgICAgICAgYm9yZGVyOiBub25lOw0KICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTAwcHg7DQogICAgICAgICAgICBjdXJzb3I6IHBvaW50ZXI7DQogICAgICAgICAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuNHMgZWFzZSwgdHJhbnNmb3JtIDAuMnMgZWFzZTsNCiAgICAgICAgfQ0KICAgICAgICAuc2VuZC1idXR0b24gew0KICAgICAgICAgICAgbWFyZ2luLWxlZnQ6IDEwcHg7DQogICAgICAgICAgICB3aWR0aDogMTAwcHg7DQogICAgICAgICAgICBwYWRkaW5nOiA2cHg7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA3YmZmOw0KICAgICAgICAgICAgY29sb3I6IHdoaXRlOw0KICAgICAgICAgICAgYm9yZGVyOiBub25lOw0KICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTAwcHg7DQogICAgICAgICAgICBjdXJzb3I6IHBvaW50ZXI7DQogICAgICAgICAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuNHMgZWFzZSwgdHJhbnNmb3JtIDAuMnMgZWFzZTsNCiAgICAgICAgfQ0KDQogICAgICAgICNzZW5kLWJ0bjpob3ZlciB7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA1NmIzOw0KICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC0zcHgpOw0KICAgICAgICB9DQoNCiAgICAgICAgLmxvYWRpbmctZG90cyB7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsNCiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyOw0KICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjsNCiAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTsNCiAgICAgICAgICAgIHBhZGRpbmc6IDhweDsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDE1cHg7DQogICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7DQogICAgICAgICAgICB3aWR0aDogNTBweDsNCiAgICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjsNCiAgICAgICAgfQ0KDQogICAgICAgIC5sb2FkaW5nLWRvdHMgc3BhbiB7DQogICAgICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7DQogICAgICAgICAgICB3aWR0aDogOHB4Ow0KICAgICAgICAgICAgaGVpZ2h0OiA4cHg7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjazsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDUwJTsNCiAgICAgICAgICAgIG1hcmdpbi1yaWdodDogNXB4Ow0KICAgICAgICAgICAgYW5pbWF0aW9uOiBib3VuY2UgMC4zcyBpbmZpbml0ZSBhbHRlcm5hdGU7DQogICAgICAgIH0NCg0KICAgICAgICAubG9hZGluZy1kb3RzIHNwYW46bnRoLWNoaWxkKDIpIHsNCiAgICAgICAgICAgIGFuaW1hdGlvbi1kZWxheTogMC4xczsNCiAgICAgICAgfQ0KDQogICAgICAgIC5sb2FkaW5nLWRvdHMgc3BhbjpudGgtY2hpbGQoMykgew0KICAgICAgICAgICAgYW5pbWF0aW9uLWRlbGF5OiAwLjJzOw0KICAgICAgICB9DQogICAgICAgIC5tYXRlcmlhbC10b2FzdGlmeSB7DQogICAgcG9zaXRpb246IGZpeGVkOyAvKiBQYXN0aWthbiB0b2FzdCBkaXRlbXBhdGthbiBzZWNhcmEgdGV0YXAgZGkgYXRhcyAqLw0KICAgIHdpZHRoOiA4MCU7DQogICAgbWF4LXdpZHRoOiA5MCU7DQogICAgdG9wOiAxMHB4OyAvKiBKYXJhayBkYXJpIGF0YXMgKi8NCiAgICByaWdodDogMTBweDsgLyogSmFyYWsgZGFyaSBrYW5hbiAqLw0KICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmYgIWltcG9ydGFudDsgLyogQmFja2dyb3VuZCBwdXRpaCAqLw0KICAgIGNvbG9yOiAjMDAwOyAvKiBUZWtzIGhpdGFtICovDQogICAgYm9yZGVyLXJhZGl1czogMTJweDsgLyogTWVtYnVhdCBzdWR1dCBidWxhdCBzZXN1YWkgTWF0ZXJpYWwgWW91ICovDQogICAgcGFkZGluZzogMTZweDsgLyogUGFkZGluZyB5YW5nIGN1a3VwIHVudHVrIGtlbnlhbWFuYW4gKi8NCiAgICBmb250LWZhbWlseTogJ1JvYm90bycsIHNhbnMtc2VyaWY7IC8qIEZvbnQgeWFuZyBsZWJpaCBiZXJzaWggKi8NCiAgICBib3gtc2hhZG93OiAwcHggNHB4IDZweCByZ2JhKDAsIDAsIDAsIDAuMSk7IC8qIFRhbWJhaGthbiBiYXlhbmdhbiBsZW1idXQgKi8NCiAgICB6LWluZGV4OiA5OTk5OTsgLyogVGluZ2thdGthbiB6LWluZGV4IGxlYmloIHRpbmdnaSAqLw0KICAgIG9wYWNpdHk6IDAuOTU7IC8qIFNlZGlraXQgdHJhbnNwYXJhbiAqLw0KfQ0KDQogICAgICAgIEBrZXlmcmFtZXMgYm91bmNlIHsNCiAgICAgICAgICAgIGZyb20gew0KICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgICAgIHRvIHsNCiAgICAgICAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTZweCk7DQogICAgICAgICAgICB9DQogICAgICAgIH0NCg0KICAgICAgICAuY29kZS1jb250YWluZXIgew0KICAgICAgICAgICAgbWFyZ2luLXRvcDogNXB4Ow0KICAgICAgICAgICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDE4cHg7DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjhmOWZhOw0KICAgICAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjsNCiAgICAgICAgICAgIGFuaW1hdGlvbjogZmFkZUluRG93biAxcyBlYXNlIGZvcndhcmRzDQogICAgICAgIH0NCg0KICAgICAgICAuY29kZS1oZWFkZXIgew0KICAgICAgICAgICAgZGlzcGxheTogZmxleDsNCiAgICAgICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7DQogICAgICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47DQogICAgICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTllY2VmOw0KICAgICAgICAgICAgcGFkZGluZzogNXB4IDEwcHg7DQogICAgICAgICAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2RkZDsNCiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDsNCiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiBib2xkOw0KICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogOHB4IDhweCAwIDA7DQogICAgICAgICAgICBjb2xvcjogIzQ5NTA1NzsNCiAgICAgICAgfQ0KDQogICAgICAgIHByZSB7DQogICAgICAgICAgICBib3JkZXItcmFkaXVzOiAwIDAgNXB4IDVweDsNCiAgICAgICAgICAgIG1hcmdpbjogMDsNCiAgICAgICAgICAgIHBhZGRpbmc6IDEwcHg7DQogICAgICAgICAgICBvdmVyZmxvdy14OiBhdXRvOw0KICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZjlmYTsNCiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTFweDsNCiAgICAgICAgICAgIHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsNCiAgICAgICAgfQ0KDQogICAgICAgIC5oZWFkZXIgew0KICAgICAgICAgICAgcGFkZGluZzogMTBweDsNCiAgICAgICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjsNCiAgICAgICAgICAgIGJvcmRlci1ib3R0b206IDBweCBzb2xpZCAjZGRkOw0KICAgICAgICAgICAgb3BhY2l0eTogMDsNCiAgICAgICAgICAgIGFuaW1hdGlvbjogZmFkZUluRG93biAwLjhzIGVhc2UgZm9yd2FyZHM7DQogICAgICAgIH0NCg0KICAgICAgICAuaGVhZGVyIGltZyB7DQogICAgICAgICAgICB3aWR0aDogMjAwcHg7DQogICAgICAgICAgICBoZWlnaHQ6IDUwcHg7DQogICAgICAgICAgICBhbmltYXRpb246IGZhZGVJbkRvd24gMXMgZWFzZSBmb3J3YXJkczsNCiAgICAgICAgfQ0KDQogICAgICAgIC5oZWFkZXIgcCB7DQogICAgICAgICAgICBmb250LXNpemU6IDE0cHg7DQogICAgICAgICAgICBjb2xvcjogIzY2NjsNCiAgICAgICAgfQ0KICAgICAgICAuY2hhdC1ib3ggew0KICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDI1cHg7DQogICAgICAgIH0NCg0KICAgICAgICAucmVjb21tZW5kZWQtYnV0dG9ucyBidXR0b24gew0KICAgICAgICAgICAgbWFyZ2luOiAzcHg7DQogICAgICAgICAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDsNCiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwMHB4Ow0KICAgICAgICAgICAgcGFkZGluZzogOHB4Ow0KICAgICAgICAgICAgYm9yZGVyOiAycHggc29saWQgIzAwN2JmZjsNCiAgICAgICAgICAgIGNvbG9yOiAjMDA3YmZmOw0KICAgICAgICAgICAgd2lkdGg6IDk1JTsNCiAgICAgICAgICAgIGRpc3BsYXk6IGNlbnRlcjsNCiAgICAgICAgICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC40cyBlYXNlLCBjb2xvciAwLjRzIGVhc2UsIHRyYW5zZm9ybSAwLjNzIGVhc2U7DQogICAgICAgIH0NCg0KICAgICAgICAucmVjb21tZW5kZWQtYnV0dG9ucyBidXR0b246aG92ZXIgew0KICAgICAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzAwN2JmZjsNCiAgICAgICAgICAgIGNvbG9yOiB3aGl0ZTsNCiAgICAgICAgICAgIHRyYW5zZm9ybTogc2NhbGUoMS4wNSk7DQogICAgICAgIH0NCg0KICAgICAgICBAa2V5ZnJhbWVzIGZhZGVJblVwIHsNCiAgICAgICAgICAgIGZyb20gew0KICAgICAgICAgICAgICAgIG9wYWNpdHk6IDA7DQogICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDUwcHgpOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgdG8gew0KICAgICAgICAgICAgICAgIG9wYWNpdHk6IDE7DQogICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQoNCiAgICAgICAgQGtleWZyYW1lcyBmYWRlSW5Eb3duIHsNCiAgICAgICAgICAgIGZyb20gew0KICAgICAgICAgICAgICAgIG9wYWNpdHk6IDA7DQogICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKC01MHB4KTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgICAgIHRvIHsNCiAgICAgICAgICAgICAgICBvcGFjaXR5OiAxOw0KICAgICAgICAgICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KDQogICAgICAgIEBrZXlmcmFtZXMgZmFkZUluIHsNCiAgICAgICAgICAgIGZyb20gew0KICAgICAgICAgICAgICAgIG9wYWNpdHk6IDA7DQogICAgICAgICAgICB9DQogICAgICAgICAgICB0byB7DQogICAgICAgICAgICAgICAgb3BhY2l0eTogMTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KDQogICAgICAgIEBrZXlmcmFtZXMgc2NhbGVVcCB7DQogICAgICAgICAgICBmcm9tIHsNCiAgICAgICAgICAgICAgICB0cmFuc2Zvcm06IHNjYWxlKDAuOCk7DQogICAgICAgICAgICB9DQogICAgICAgICAgICB0byB7DQogICAgICAgICAgICAgICAgdHJhbnNmb3JtOiBzY2FsZSgxKTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KDQogICAgICAgIEBrZXlmcmFtZXMgbWVzc2FnZUluIHsNCiAgICAgICAgICAgIGZyb20gew0KICAgICAgICAgICAgICAgIG9wYWNpdHk6IDA7DQogICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDIwcHgpOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgdG8gew0KICAgICAgICAgICAgICAgIG9wYWNpdHk6IDE7DQogICAgICAgICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQpAbWVkaWEgKG1heC13aWR0aDogNTk5cHgpIHsNCiAgICAuY2hhdC1jb250YWluZXIgew0KICAgICAgICB3aWR0aDogMTAwJTsNCiAgICAgICAgaGVpZ2h0OiA5MnZoOyAvKiBNZW5nZ3VuYWthbiAxMDB2aCB1bnR1ayB0aW5nZ2kgcGVudWggcGFkYSBwb25zZWwgKi8NCiAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjsgLyogTm9uYWt0aWZrYW4gc2Nyb2xsICovDQogICAgfQ0KfQ0KDQpAbWVkaWEgKG1pbi13aWR0aDogNjAwcHgpIGFuZCAobWF4LXdpZHRoOiAxMTk5cHgpIHsNCiAgICAuY2hhdC1jb250YWluZXIgew0KICAgICAgICB3aWR0aDogOTUlOw0KICAgICAgICBoZWlnaHQ6IDEwMHZoOyAvKiBNZW5nZ3VuYWthbiAxMDB2aCB1bnR1ayB0aW5nZ2kgcGVudWggcGFkYSB0YWJsZXQgKi8NCiAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjsgLyogTm9uYWt0aWZrYW4gc2Nyb2xsICovDQogICAgfQ0KfQ0KDQpAbWVkaWEgKG1pbi13aWR0aDogMTIwMHB4KSB7DQogICAgLmNoYXQtY29udGFpbmVyIHsNCiAgICAgICAgaGVpZ2h0OiAxMDB2aDsgLyogTWVuZ2d1bmFrYW4gMTAwdmggdW50dWsgdGluZ2dpIHBlbnVoIHBhZGEgZGVza3RvcCAqLw0KICAgICAgICB3aWR0aDogOTAlOw0KICAgICAgICBtYXgtd2lkdGg6IDEyMDBweDsgLyogVW50dWsgcGVyYW5na2F0IGRlc2t0b3AgeWFuZyBsZWJpaCBiZXNhciAqLw0KICAgICAgICBvdmVyZmxvdzogaGlkZGVuOyAvKiBOb25ha3RpZmthbiBzY3JvbGwgKi8NCiAgICB9DQp9");
-</style>
- <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then((registration) => {
-                    console.log('Service Worker registered:', registration);
-                })
-                .catch((error) => {
-                    console.log('Service Worker registration failed:', error);
-                });
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+
+            margin: 0;
+            background: white;
+            height: 100%;
+            overflow-y: hidden !important;
+            animation: fadeIn 0.8s ease-in-out;
         }
-    </script>
+.fs {
+
+  position: fixed; /* Menetapkan posisi tetap agar elemen menutupi seluruh layar */
+
+  top: 0;
+
+  left: 0;
+
+  width: 100vw; /* Lebar 100% dari viewport */
+
+  height: 100vh; /* Tinggi 100% dari viewport */
+
+  background: transparent;/* Latar belakang putih */
+
+  z-index: 9999; /* Menggunakan z-index tinggi agar berada di atas elemen lain */
+
+}
+       .chat-container {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150vh;
+    width: 100%;
+    max-width: 899px;
+    margin: 0 auto;
+    background: transparent;
+    border: 0px solid #ddd;
+    border-radius: 10px;
+    overflow: none;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: fadeInUp 0.8s ease-in-out forwards;
+    z-index: 99999;
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 0px solid #ddd;
+    transition: background-color 0.4s ease;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: messageIn 0.5s ease forwards;
+    max-width: 60%; /* Membatasi lebar pesan agar tidak terlalu lebar */
+}
+
+.user-message {
+    margin-left: auto; /* Menempatkan pesan user di sebelah kanan */
+    background: white;
+    text-align: right;border:2px solid black;
+    width: 100%; /* Mendukung tampilan lebar yang fleksibel */
+    max-width: 60%; /* Pesan user maksimal 60% dari lebar kontainer */
+    display: flex;
+    justify-content: flex-end; /* Pesan user diselaraskan ke kanan */
+}
+
+@keyframes fadePop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.bot-message {
+  
+    margin-right: auto; /* Menempatkan pesan bot di sebelah kiri */
+    background: white;border:2px solid darkgray;
+    width: 100%; /* Mendukung tampilan lebar yang fleksibel */
+    max-width: 90%; /* Pesan bot maksimal 87% dari lebar kontainer */
+    display: left;
+    font-size: 15px;
+    justify-content: flex-start; /* Pesan bot diselaraskan ke kiri */
+    opacity: 0; /* Awal transparan untuk animasi */
+    animation: fadePop 0.3s ease forwards; /* Menambahkan animasi fade-in */
+}
+
+
+
+        .code-box {
+            background-color: #f0f0f0;
+            border: 0px solid black;
+            border-radius: 18px;
+            padding: 10px;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 5px 0;
+            font-family: monospace;
+        }
+
+.input-area {
+    display: flex;
+    align-items: center; /* Menjaga elemen sejajar vertikal di tengah */
+    padding: 10px;
+    margin-top: 0px;
+    border-top: 0px solid blue;
+    opacity: 0;
+    align-content: center;
+    animation: fadeInDown 0.8s ease forwards;
+    animation-delay: 1s;
+}
+
+#user-input, #send-btn {
+    margin-left: 0px;
+    padding: 10px;
+    width: 57px;
+    background-color: white;
+    color: black;
+    font-size: 17px;border:2px solid black;
+    outline:none !important;
+    height: 49px; /* Pastikan tinggi konsisten */
+    border-radius: 12px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.2s ease;
+}
+
+#user-input {
+    flex-grow: 1;
+}
+
+#send-btn {
+    /* Menghilangkan margin-top negatif agar sejajar dengan input */
+    margin-left: 10px;
+}
+        .send-button {
+            margin-left: 76px !important;margin-top:0px;
+            width: 100px;margin-bottom:10px;
+            padding: 10px;border:none;
+            background-color: white;
+            color: black;border:2px solid white
+            height:65px;
+            border-top-left-radius: 12px;border-top-right-radius: 12px;
+          border-bottom-left-radius:12px;border-bottom-right-radius:12px;
+            cursor: pointer;margin-top:9px;
+            transition: background-color 0.4s ease, transform 0.2s ease;
+        }
+
+        #send-btn:hover {
+            background-color:black ;color:white;
+            transform: translateY(-3px);
+        }
+
+        .loading-dots {
+            background-color: transparent; margin-right:169px;border:
+            
+            
+            color: white;
+            padding: 8px;
+            border-radius: 75px;
+            display: inline;margin-left:-28px !impirtant;
+            width: 60px;
+            text-align: center;
+        }
+
+        .loading-dots span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: black;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: bounce 0.3s infinite alternate;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .material-toastify {
+    position: fixed; /* Pastikan toast ditempatkan secara tetap di atas */
+    width: 80%;
+    max-width: 90%;
+    top: 10px; /* Jarak dari atas */
+    right: 10px; /* Jarak dari kanan */
+    background-color: #fff !important; /* Background putih */
+    color: #000; /* Teks hitam */
+    border-radius: 12px; /* Membuat sudut bulat sesuai Material You */
+    padding: 16px; /* Padding yang cukup untuk kenyamanan */
+    font-family: 'Roboto', sans-serif; /* Font yang lebih bersih */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan lembut */
+    z-index: 99999; /* Tingkatkan z-index lebih tinggi */
+    opacity: 0.95; /* Sedikit transparan */
+}
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-6px);
+            }
+        }
+
+        .code-container {
+            margin-top: 5px;
+            border: 2px solid black;
+            border-radius: 18px;
+            background:white;
+            overflow: hidden;
+        }
+
+.code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 0 20px; /* Menetapkan padding kiri dan kanan */
+    font-size: 14px;
+    border: 1px solid white;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    text-align: left;
+    font-weight: bold;
+    border-radius: 12px;
+    color: white;
+}
+
+        pre {
+            border-radius: 0 0 12px 12px;
+            margin: 0;
+            padding: 10px;font-family: 'Poppins', sans-serif;
+
+            overflow-x: auto;border-right:0px solid black;border-left:0px solid black;
+          border-bottom:0px solid black;
+            background: white;
+            font-size: 15px;color:darkblue;
+            white-space: pre-wrap;
+        }
+
+        .header {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 0px solid #ddd;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        .header img {
+            width: 200px;
+            height: 50px;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: #666;
+        }
+        .chat-box {
+          border-radius: 12px;
+        }
+
+        .recommended-buttons button {
+            margin: 3px;
+            background: transparent;
+            border-radius: 12px;
+            padding: 15px;
+            border: 2px solid black;
+            color: black;margin-bottom:5px;
+            width: 95%;
+            display: center;
+            transition: background-color 0.4s ease, color 0.4s ease, transform 0.3s ease;
+        }
+
+        .recommended-buttons button:hover {
+            background-color: black;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.8);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+@media (max-width: 599px) {
+    .chat-container {
+        width: 100%;
+        height: 97vh; /* Menggunakan 100vh untuk tinggi penuh pada ponsel */
+        overflow: hidden; /* Nonaktifkan scroll */
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1199px) {
+    .chat-container {
+        width: 95%;
+        height: 98vh; /* Menggunakan 100vh untuk tinggi penuh pada tablet */
+        overflow: hidden; /* Nonaktifkan scroll */
+    }
+}
+      @keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;}
+
+@media (min-width: 1200px) {
+    .chat-container {
+        height: 100vh; /* Menggunakan 100vh untuk tinggi penuh pada desktop */
+        width: 90%;
+        max-width: 1200px; /* Untuk perangkat desktop yang lebih besar */
+        overflow: hidden; /* Nonaktifkan scroll */
+    }
+}.bot-message.warning {
+    background-color: red !important;
+    color: white;text-align:center;
+}
+      .hr{margin-bottom:10px;}
+    </style><style>
+@keyframes fadeInPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+  .icon-placeholder::placeholder {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400; /* Use 900 for solid icons if needed */
+  content: "\f086";
+}
+</style>
 </head>
 <body>
     <div class="chat-container">
         <div class="header">
-            <img src="https://ik.imagekit.io/8ypxlc5mu/20241022_165249.png?updatedAt=1729590790964" width="200" height="30" alt="Nexoria Logo">
-            <p>Your personalized AI assistant</p>
+            <img src="https://ik.imagekit.io/n04hm9fi1/20250104_112310.png?updatedAt=1735964641439" width="200" height="30" alt="Nexoria Logo">
+            <p>Free AI for you</p>
         </div>
         <div class="chat-box" id="chat-box"></div>
 
@@ -43,8 +430,8 @@
         </div>
 
         <div class="input-area">
-            <input type="text" id="user-input" placeholder="message...">
-            <button id="send-btn">Send</button>
+            <input type="text" id="user-input" placeholder="💬 type a message...">
+            <button id="send-btn"><i class="fa-solid fa-chevron-right" style="margin-bottom:2px;"></i></button>
             <br>
         </div>
     </div>
@@ -53,8 +440,244 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
 
     <script>
-        const _0x49de00=_0x1870;(function(_0x5d614c,_0x20ca33){const _0x190cb3=_0x1870,_0x193cd1=_0x5d614c();while(!![]){try{const _0x1326c0=-parseInt(_0x190cb3(0x1a9))/0x1+-parseInt(_0x190cb3(0x1c6))/0x2*(-parseInt(_0x190cb3(0x1a3))/0x3)+-parseInt(_0x190cb3(0x1d0))/0x4+-parseInt(_0x190cb3(0x1bd))/0x5*(-parseInt(_0x190cb3(0x1c8))/0x6)+-parseInt(_0x190cb3(0x1da))/0x7+-parseInt(_0x190cb3(0x1a6))/0x8*(-parseInt(_0x190cb3(0x1c2))/0x9)+parseInt(_0x190cb3(0x1be))/0xa*(parseInt(_0x190cb3(0x1ca))/0xb);if(_0x1326c0===_0x20ca33)break;else _0x193cd1['push'](_0x193cd1['shift']());}catch(_0x422a44){_0x193cd1['push'](_0x193cd1['shift']());}}}(_0x561f,0x8bcb1));const chatBox=document['getElementById'](_0x49de00(0x1c9)),userInput=document[_0x49de00(0x1de)]('user-input'),sendBtn=document['getElementById'](_0x49de00(0x1bc)),recommendedButtons=document['getElementById'](_0x49de00(0x1bf));sendBtn[_0x49de00(0x1b2)]('click',()=>{const _0x35deb2=_0x49de00,_0x2953f4=userInput[_0x35deb2(0x1ce)];_0x2953f4['trim']()&&(addMessageToChat(_0x35deb2(0x1cb),_0x2953f4),showLoadingDots(),hideRecommendedButtons(),sendToAPI(_0x2953f4),userInput[_0x35deb2(0x1ce)]='');});function sendRecommended(_0x381cbc){const _0x5482cc=_0x49de00;addMessageToChat(_0x5482cc(0x1cb),_0x381cbc),showLoadingDots(),hideRecommendedButtons(),sendToAPI(_0x381cbc);}function hideRecommendedButtons(){const _0x51eee3=_0x49de00;recommendedButtons[_0x51eee3(0x1ab)]['display']='none';}function showLoadingDots(){const _0x4bcceb=_0x49de00,_0x3721ee=document[_0x4bcceb(0x1b9)]('div');_0x3721ee[_0x4bcceb(0x1dd)]['add'](_0x4bcceb(0x1b7),_0x4bcceb(0x1cd)),_0x3721ee['style'][_0x4bcceb(0x1ba)]=_0x4bcceb(0x1cf),_0x3721ee['innerHTML']='<div\x20class=\x22loading-dots\x22><span></span><span></span><span></span></div>',_0x3721ee['id']=_0x4bcceb(0x1d5),chatBox[_0x4bcceb(0x1a0)](_0x3721ee),chatBox['scrollTop']=chatBox[_0x4bcceb(0x1c1)];}function _0x1870(_0x111c32,_0x317b81){const _0x561f60=_0x561f();return _0x1870=function(_0x187087,_0x29d4d7){_0x187087=_0x187087-0x19f;let _0x5992a4=_0x561f60[_0x187087];return _0x5992a4;},_0x1870(_0x111c32,_0x317b81);}function removeLoadingDots(){const _0x2ffdb9=_0x49de00,_0x3bf719=document[_0x2ffdb9(0x1de)](_0x2ffdb9(0x1d5));_0x3bf719&&_0x3bf719[_0x2ffdb9(0x1c3)]();}function addMessageToChat(_0x5d4b44,_0x54434d){const _0x4e16f4=_0x49de00,_0x104c64=document['createElement'](_0x4e16f4(0x1c7));_0x104c64[_0x4e16f4(0x1dd)]['add'](_0x4e16f4(0x1b7),_0x5d4b44==='user'?_0x4e16f4(0x1bb):_0x4e16f4(0x1cd)),_0x104c64[_0x4e16f4(0x1a5)]=_0x5d4b44===_0x4e16f4(0x1b6)?parseMarkdown(_0x54434d):_0x54434d,chatBox[_0x4e16f4(0x1a0)](_0x104c64),chatBox[_0x4e16f4(0x1c5)]=chatBox['scrollHeight'];}function escapeHtml(_0x247432){const _0x4e1688=_0x49de00;return _0x247432[_0x4e1688(0x1ac)](/&/g,_0x4e1688(0x1a7))['replace'](/</g,_0x4e1688(0x1d7))[_0x4e1688(0x1ac)](/>/g,_0x4e1688(0x1ad));}function _0x561f(){const _0x281532=['1712fKNvEJ','&amp;','\x22><code\x20class=\x22language-','195459PWqAcH','Async:\x20Could\x20not\x20copy\x20text:\x20','style','replace','&gt;','writeText','textContent','json','trim','addEventListener','\x27)\x22\x20id=\x22','finally','Error:','bot','message','response','createElement','backgroundColor','user-message','send-btn','40vNUqXH','3523990oGTTks','recommended-buttons','&apikey=aluxi','scrollHeight','38322rNgBGT','remove','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span><button\x20onclick=\x22copyToClipboard(\x27','scrollTop','448732iRaHrn','div','295428VOpWlb','chat-box','11EBHadu','user','Copied\x20<i\x20class=\x27fas\x20fa-check\x27></i>','bot-message','value','transparent','4528160aIPYjE','copy-btn-','innerText','error','<strong>$1</strong>','loading-dots','code-box-','&lt;','clipboard','Sorry,\x20I\x20could\x20not\x20understand\x20the\x20response\x20from\x20the\x20server.','1443085NqIpqZ','Copied\x20✅','Kode\x20berhasil\x20disalin!','classList','getElementById','\x22\x20class=\x22send-button\x22><i\x20class=\x22fa-regular\x20fa-clipboard\x22></i>\x20Copy</button></span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<pre\x20id=\x22','data','appendChild','\x27,\x20\x27','then','6QzAuAp','<em>$1</em>','innerHTML'];_0x561f=function(){return _0x281532;};return _0x561f();}function parseMarkdown(_0x1e27eb){const _0x2d4f5c=_0x49de00;return _0x1e27eb=_0x1e27eb[_0x2d4f5c(0x1ac)](/\*\*(.*?)\*\*/g,_0x2d4f5c(0x1d4)),_0x1e27eb=_0x1e27eb['replace'](/__(.*?)__/g,_0x2d4f5c(0x1d4)),_0x1e27eb=_0x1e27eb[_0x2d4f5c(0x1ac)](/\*(.*?)\*/g,_0x2d4f5c(0x1a4)),_0x1e27eb=_0x1e27eb[_0x2d4f5c(0x1ac)](/_(.*?)_/g,_0x2d4f5c(0x1a4)),_0x1e27eb=parseCodeBlocks(_0x1e27eb),_0x1e27eb;}let codeBlockCount=0x0;function parseCodeBlocks(_0x3d5a98){const _0x2d718b=_0x49de00,_0x3e845d=/```(.*?)\n([\s\S]*?)```/g;return _0x3d5a98=_0x3d5a98[_0x2d718b(0x1ac)](_0x3e845d,(_0x4447d1,_0x4f514b,_0x3730cd)=>{const _0x4a330b=_0x2d718b,_0x531054=_0x4f514b[_0x4a330b(0x1b1)](),_0x574227=escapeHtml(_0x3730cd['trim']()),_0x1adada=_0x4a330b(0x1d6)+codeBlockCount,_0x5cb8fd=_0x4a330b(0x1d1)+codeBlockCount;return codeBlockCount++,'<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22code-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22code-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>'+escapeHtml(_0x531054)+_0x4a330b(0x1c4)+_0x1adada+_0x4a330b(0x1a1)+_0x5cb8fd+_0x4a330b(0x1b3)+_0x5cb8fd+_0x4a330b(0x1df)+_0x1adada+_0x4a330b(0x1a8)+escapeHtml(_0x531054)+'\x22>'+_0x574227+'</code></pre>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';}),_0x3d5a98;}function copyToClipboard(_0x7d3c23,_0x4c6455){const _0x160aed=_0x49de00;var _0x29de6f=document[_0x160aed(0x1de)](_0x7d3c23)[_0x160aed(0x1af)],_0x1da3ac=document['getElementById'](_0x4c6455),_0x155eb7=_0x1da3ac[_0x160aed(0x1d2)],_0x2da42e=_0x160aed(0x1db);_0x1da3ac[_0x160aed(0x1a5)]=_0x160aed(0x1cc),navigator[_0x160aed(0x1d8)][_0x160aed(0x1ae)](_0x29de6f)[_0x160aed(0x1a2)](()=>{const _0x2fe7fa=_0x160aed;showToast(_0x2fe7fa(0x1dc));})['catch'](_0xad7c4b=>{const _0x1b0059=_0x160aed;console[_0x1b0059(0x1d3)](_0x1b0059(0x1aa),_0xad7c4b);})[_0x160aed(0x1b4)](()=>{setTimeout(()=>{const _0x52ca63=_0x1870;_0x1da3ac[_0x52ca63(0x1d2)]=_0x155eb7;},0xfa0);});}async function sendToAPI(_0x489efe){const _0x4bcc22=_0x49de00;try{const _0x18f781=await fetch('https://api.alvianuxio.my.id/api/letmegpt?message='+encodeURIComponent(_0x489efe)+_0x4bcc22(0x1c0)),_0x57fe61=await _0x18f781[_0x4bcc22(0x1b0)]();removeLoadingDots(),_0x57fe61&&_0x57fe61['data']&&_0x57fe61[_0x4bcc22(0x19f)][_0x4bcc22(0x1b8)]?addMessageToChat(_0x4bcc22(0x1b6),_0x57fe61[_0x4bcc22(0x19f)]['response']):addMessageToChat('bot',_0x4bcc22(0x1d9));}catch(_0x25cfbe){console[_0x4bcc22(0x1d3)](_0x4bcc22(0x1b5),_0x25cfbe),removeLoadingDots(),addMessageToChat(_0x4bcc22(0x1b6),'Sorry,\x20something\x20went\x20wrong.');}}
-    </script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const recommendedButtons = document.getElementById('recommended-buttons');
+
+    const forbiddenWords = [
+    // Bahasa Indonesia
+"tt", "gede","kecil","crot" , "Okep", "coli", "colmek", "mmk","kntl","bh","jangkrik", "cok", "jancok","pepek","asu",  "anjing", "babi", "bangsat", "brengsek", "goblok", "tolol", "bodoh", "sialan", "kampret", "tai", "setan", 
+    "lonte", "pelacur", "sundal", "perek", "jancuk", "kontol", "memek", "titit", "ngewe", "ngentot", "kelamin", 
+    "porno", "mesum", "bokep", "masturbasi", "seks", "porno", "alat kelamin", "payudara", "vagina", "penis", 
+    "bokong", "dubur", "jilat", "bercinta", "sperma", "ejakulasi", "orgasme", "pantek", "jembut", "kacrut", 
+    "monyet", "bego", "bejat", "bajingan", "tetek", "burit", "kelamin", "banci", "puki", "titit", "kenthu", 
+    "coli", "bontot", "pantat", "berak", "kimak", "asw", "sek", "matamu", "diem lo", "tai kucing", "brengsek", 
+    "tempek", "keparat", "ngehe", "brengsek", "mbokep", "ngentot", "mesum", "pornografi", "mesum", "ngaceng",
+    "zakar", "memek", "lubang", "seksual", "telanjang", "mesum", "porno", "video panas", "tabu", "kotor", 
+    "dosa", "serong", "cabul", "berzina", "indehoy", "bugil", "mucikari", "syahwat", "napsu", "seks bebas", 
+    "klimaks", "pornoaksi", "porno", "pemuas", "pesta seks", "oral seks", "anal seks", "doggy style", 
+    "eksploitasi", "porno film", "film porno", "film panas", "porno bintang", "pornografi anak", "seks", 
+    "persetubuhan", "pemerkosaan", "pelacuran", "prostitusi", "lesbian", "gay", "biseksual", "transgender", 
+    "transseksual", "swinger", "fetish", "bdsm", "kinky", "telanjang bulat", "porno hardcore", "porno softcore", 
+    "porno", "erotis", "seksualitas", "tubuh", "kemaluan", "alat vital", "penis", "vagina", "payudara", "puting", 
+    "sperma", "air mani", "melancap", "masturbasi", "penetrasi", "klitoris", "G-spot", "prostat", "vibrator", 
+    "alat seks", "seks oral", "seks anal", "doggy", "dirty talk", "fantasi seksual", "video bokep", "streaming bokep", 
+    "porno gratis", "pemerkosa", "phedo", "bejat", "seksualitas", "mesum", "fuck", "suck", "fucker", "kissing", "making love", 
+    "pornography", "nude", "porno action", "dirty", "cum", "slut", "bitch", "whore", "dick", "ass", "motherfucker", 
+    "boobs", "cock", "pussy", "orgy", "orgasms", "ejaculate", "hentai", "anime porn", "strip", "tits", "rape", 
+    "sex", "hardcore", "gangbang", "lesbian", "gay", "bisexual", "transsexual", "fetish", "bdsm", "kinky", 
+    "blowjob", "cumshot", "nudity", "incest", "pedo", "bestiality", "porn star", "adult content", "softcore", 
+    "porn movies", "erotic", "orgasms", "dirty pictures", "sexual content", "explicit material", "XXX", "uncensored", 
+    "naughty", "dirty words", "swear", "taboo", "penis", "vulgar", "sex toys", "nasty", "hooker", "stripper", 
+    "strip club", "lap dance", "lap dancing", "naked girls", "sexy", "fetish", "hardcore", "erotic art", "sensual", 
+    "striptease", "X-rated", "adult", "porno book", "porno stories", "porno fanfiction", "adult entertainment", 
+    "horny", "sexual", "erotica", "sexually explicit", "porno video", "explicit", "nasty videos", "porno streaming", 
+    "porn websites", "adult websites", "hardcore porno", "lewd", "provocative", "vulgar language", "obscene", "degrading"
+    ,"doggy style" , "blowjob" , "cewe tobrut", "binal" , "hs", "xnxx" // Tambahkan lebih banyak sesuai kebutuhan Anda
+];
+
+    sendBtn.addEventListener('click', () => {
+        const message = userInput.value;
+        if (message.trim()) {
+            if (containsForbiddenWords(message)) {
+                showWarningMessage(); // Tampilkan peringatan jika ada kata kasar
+                userInput.value = ''; // Kosongkan input
+            } else {
+                addMessageToChat('user', message);
+                showLoadingDots();
+                hideRecommendedButtons();
+                sendToAPI(message);
+                userInput.value = '';
+            }
+        }
+    });
+
+    function containsForbiddenWords(text) {
+        return forbiddenWords.some(word => text.toLowerCase().includes(word));
+    }
+
+    function showWarningMessage() {
+        const wrapper = document.createElement('div');
+        const shadow = wrapper.attachShadow({ mode: 'open' });
+
+        const warningDiv = document.createElement('div');
+        warningDiv.style.cssText = `
+            background: linear-gradient(to right, white,pink, lightgray, pink,white); margin-top: 5px;
+            color: black; font-weight: bold;
+            padding: 10px; font-size: 14px;
+            border-radius: 3px; animation: fadeIn 7s ease-in forwards;
+        `;
+
+        warningDiv.innerHTML = 'Your message violates the rules<br> AI Nexoria cannot respond.';
+        
+        shadow.appendChild(warningDiv);
+        chatBox.appendChild(wrapper);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function sendRecommended(text) {
+        addMessageToChat('user', text);
+        showLoadingDots();
+        hideRecommendedButtons();
+        sendToAPI(text);
+    }
+
+    function hideRecommendedButtons() {
+        recommendedButtons.style.display = 'none';
+    }
+
+    function showLoadingDots() {
+        const loadingDiv = document.createElement('div');
+        loadingDiv.classList.add('message', 'bot-message');
+        loadingDiv.style.backgroundColor = 'transparent';
+        loadingDiv.innerHTML = `<div class="loading-dots"><span></span><span></span><span></span></div>`;
+        loadingDiv.id = 'loading-dots';
+        chatBox.appendChild(loadingDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function removeLoadingDots() {
+        const loadingDots = document.getElementById('loading-dots');
+        if (loadingDots) {
+            loadingDots.remove();
+        }
+    }
+
+    function addMessageToChat(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+        messageDiv.innerHTML = sender === 'bot' ? parseMarkdown(message) : message;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function escapeHtml(html) {
+        return html
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function parseMarkdown(text) {
+        text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
+
+        text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        text = text.replace(/_(.*?)_/g, '<em>$1</em>');
+        text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");  // **Bold**
+text = text.replace(/\*(.*?)\*/g, "<i>$1</i>");  // *Italic*
+text = text.replace(/__(.*?)__/g, "<u>$1</u>");  // __Underline__
+text = text.replace(/~~(.*?)~~/g, "<del>$1</del>");  // ~~Strikethrough~~
+
+// Support for headings
+text = text.replace(/^(#{1,6})\s*(.*?)$/gm, (match, hashes, content) => {
+  const level = hashes.length;
+  return `<h${level}>${content}</h${level}>`;
+});
+
+// Support for ordered lists (1., 2., 3.)
+text = text.replace(/^(\d+)\.\s*(.*?)$/gm, (match, number, content) => {
+  return `<ol><li>${content}</li></ol>`;
+});
+
+// Support for unordered lists (- or •)
+text = text.replace(/^([-\u2022])\s*(.*?)$/gm, (match, bullet, content) => {
+  return `<ul><li>${content}</li></ul>`;
+});
+// Support for tables (with separator line)
+text = text.replace(/^\|(.+\|)+\n\|(.+\|)+$/gm, (match) => {
+  // Split the table by lines
+  const rows = match.trim().split('\n');
+
+  // First row is header (| Name | Age | City |)
+  const headerRow = rows[0].split('|').map(cell => `<th>${cell.trim()}</th>`).join('');
+
+  // Second row is separator (| ----- | ----- | ----- |), we ignore this row
+  // The subsequent rows are the data rows
+  const dataRows = rows.slice(2).map(row => {
+    return row.split('|').map(cell => `<td>${cell.trim()}</td>`).join('');
+  }).join('</tr><tr>');
+
+  // Create the table structure
+  return `<table><thead><tr>${headerRow}</tr></thead><tbody><tr>${dataRows}</tr></tbody></table>`;
+});
+
+// Ensure consistent line breaks between elements
+text = text.replace(/([^\n])\n([^\n])/g, '$1\n\n$2');  // Adds an extra new line between non-empty lines
+
+        text = parseCodeBlocks(text);
+
+        return text;
+    }
+
+    let codeBlockCount = 0;
+
+    function parseCodeBlocks(text) {
+        const codeBlockRegex = /```(.*?)\n([\s\S]*?)```/g;
+        text = text.replace(codeBlockRegex, (match, p1, p2) => {
+            const codeType = p1.trim();
+            const code = escapeHtml(p2.trim());
+            const uniqueId = `code-box-${codeBlockCount}`;
+            const buttonId = `copy-btn-${codeBlockCount}`;
+            codeBlockCount++;
+
+            return `<br>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span><i class="fas fa-file" style='margin-right: 5px;'></i>${escapeHtml(codeType)}</span>
+                        <span><button onclick="copyToClipboard('${uniqueId}', '${buttonId}')" id="${buttonId}" class="send-button">📋 Copy</button></span>
+                    </div>
+                    <pre id="${uniqueId}" style="color:blue;"><code class="language-${escapeHtml(codeType)}" style="background: linear-gradient(45deg, green, black);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: black; font-weight:bold;font-family:poppins;">${code}</code></pre>
+                </div><br>
+            `;
+        });
+
+        return text;
+    }
+
+    function copyToClipboard(codeBoxId, buttonId) {
+        var code = document.getElementById(codeBoxId).textContent;
+        var button = document.getElementById(buttonId);
+        var originalText = button.innerText;
+        var newText = 'Copied ✅';
+
+        button.innerHTML = `Copied <i class='fas fa-check'></i>`;
+
+        navigator.clipboard.writeText(code)
+            .then(() => {
+                showToast("Kode berhasil disalin!");
+            })
+            .catch(err => {
+                console.error('Async: Could not copy text: ', err);
+            })
+            .finally(() => {
+                setTimeout(() => {
+                    button.innerText = originalText;
+                }, 4000);
+            });
+    }
+
+    async function sendToAPI(text) {
+        try {
+            const response = await fetch(`https://api.alvianuxio.my.id/api/chatsandbox?text=${encodeURIComponent(text)}&model=openai&apikey=aluxi`);
+            const data = await response.json();
+
+            removeLoadingDots();
+            if (data && data.data && data.data.response) {
+                addMessageToChat('bot', data.data.response);
+            } else {
+                addMessageToChat('bot', 'Sorry, I could not understand the response from the server.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            removeLoadingDots();
+            addMessageToChat('bot', 'Sorry, something went wrong.');
+        }
+    }
+</script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     // Fungsi untuk menampilkan notifikasi toast dengan gaya Material You
@@ -90,4 +713,4 @@
     });
 </script>
 </body>
-</html>
+</html></div>
