@@ -39,11 +39,11 @@
 
 }
        .chat-container {
-    margin-top: 70px;
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 150vh;
+    height: 130vh;
     width: 100%;
     max-width: 899px;
     margin: 0 auto;
@@ -109,54 +109,78 @@
     animation: fadePop 0.3s ease forwards; /* Menambahkan animasi fade-in */
 }
 
-
-
-        .code-box {
-            background-color: #f0f0f0;
-            border: 0px solid black;
-            border-radius: 18px;
-            padding: 10px;
-            overflow-x: auto;
-            white-space: pre;
-            margin: 5px 0;
-            font-family: monospace;
-        }
-
 .input-area {
     display: flex;
-    align-items: center; /* Menjaga elemen sejajar vertikal di tengah */
+    align-items: center; /* Menjaga elemen sejajar secara vertikal */
     padding: 10px;
     margin-top: 0px;
     border-top: 0px solid blue;
     opacity: 0;
-    align-content: center;
     animation: fadeInDown 0.8s ease forwards;
     animation-delay: 1s;
-    margin-bottom: 40px;
+    margin-bottom: 10px; /* Jarak bawah */
 }
 
-#user-input, #send-btn {
-    margin-left: 0px;
+#user-input {
+    flex-grow: 1; /* Memastikan input mengisi ruang yang tersedia */
     padding: 10px;
-    width: 57px;
+    height: 49px; /* Konsisten dengan tombol */
+    border: 2px solid black;
+    border-radius: 12px;
+    font-size: 17px;
+    outline: none;
+    margin-right: 10px; /* Jarak antara input dan tombol */
+}
+
+#send-btn {
+    padding: 10px;
+    height: 49px; /* Sama dengan input */
+    width: 60px; /* Lebar tombol */
+    border: 2px solid black;
+    border-radius: 12px;
     background-color: white;
     color: black;
-    font-size: 17px;border:2px solid black;
-    outline:none !important;
-    height: 49px; /* Pastikan tinggi konsisten */
-    border-radius: 12px;
-    margin-bottom: 25px;
     cursor: pointer;
     transition: background-color 0.4s ease, transform 0.2s ease;
 }
 
-#user-input {
-    flex-grow: 1;
+#send-btn:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05); /* Efek hover */
 }
 
-#send-btn {
-    /* Menghilangkan margin-top negatif agar sejajar dengan input */
-    margin-left: 10px;
+.input-note {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+    margin-top: 2px; /* Jarak atas dari input-area */
+    opacity: 0; /* Tersembunyi sebelum animasi */
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 1.5s; /* Sinkronisasi animasi */
+    margin-bottom: 15%;
+}
+
+/* Animasi */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
         .send-button {
             margin-left: 76px !important;margin-top:0px;
@@ -230,42 +254,61 @@
             }
         }
 
-        .code-container {
-            margin-top: 5px;
-            border: 2px solid black;
-            border-radius: 18px;
-            background:white;
-            overflow: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.code-container {
+    margin-top: 5px;
+    border: 2px solid black;
+    border-radius: 18px;
+    background: white;
+    overflow: hidden;
+    padding: 0;
+}
 
 .code-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: black;
-    padding: 0 20px; /* Menetapkan padding kiri dan kanan */
+    padding: 0 20px;
     font-size: 14px;
     border: 1px solid white;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 5px;
     text-align: left;
     font-weight: bold;
     border-radius: 12px;
     color: white;
 }
 
-        pre {
-            border-radius: 0 0 12px 12px;
-            margin: 0;
-            padding: 10px;font-family: 'Poppins', sans-serif;
+pre {
+    border-radius: 0 0 12px 12px;
+    margin: 0;
+    padding: 8px 8px 0;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: auto;
+    border: 0;
+    background: white;
+    font-size: 15px;
+    color: darkblue;
+    white-space: pre-wrap;
+    line-height: 1;
+}
 
-            overflow-x: auto;border-right:0px solid black;border-left:0px solid black;
-          border-bottom:0px solid black;
-            background: white;
-            font-size: 15px;color:darkblue;
-            white-space: pre-wrap;
-        }
+.code-box {
+    background-color: #f0f0f0;
+    border: 0;
+    border-radius: 18px;
+    padding: 10px 10px 0;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin: 5px 0 0;
+    font-family: monospace;
+    line-height: 1;
+}
 
         .header {
             padding: 10px;
@@ -430,12 +473,12 @@
             <button onclick="sendRecommended('What can you do?')">What can you do?</button></center>
         </div>
 
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="💬 type a message...">
-            <button id="send-btn"><i class="fa-solid fa-chevron-right" style="margin-bottom:2px;"></i></button>
-            <br>
-        </div>
-    </div>
+<div class="input-area">
+    <input type="text" id="user-input" placeholder="💬 type a message...">
+    <button id="send-btn"><i class="fa-solid fa-chevron-right" style="margin-bottom:2px;"></i></button>
+</div>
+<p class="input-note">Nexoria AI can be mistakes, use them wisely</p>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
@@ -631,7 +674,7 @@ text = text.replace(/([^\n])\n([^\n])/g, '$1\n\n$2');  // Adds an extra new line
                     </div>
                     <pre id="${uniqueId}" style="color:blue;"><code class="language-${escapeHtml(codeType)}" style="background: linear-gradient(45deg, green, black);
                     -webkit-background-clip: text;
-                    -webkit-text-fill-color: black; font-weight:bold;font-family:poppins;">${code}</code></pre>
+                    -webkit-text-fill-color: black;font-family:monospace;">${code}</code></pre>
                 </div><br>
             `;
         });
