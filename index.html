@@ -705,7 +705,7 @@ text = text.replace(/([^\n])\n([^\n])/g, '$1\n\n$2');  // Adds an extra new line
 
     async function sendToAPI(text) {
         try {
-            const response = await fetch(`https://api.alvianuxio.my.id/api/chatsandbox?text=${encodeURIComponent(text)}&model=openai&apikey=aluxi`);
+            const response = await fetch(`https://api.alvianuxio.my.id/api/chatsandbox?text=${encodeURIComponent(text)}&model=openai&apikey=aluxi&prompt=${encodeURIComponent(prompt)}`);
             const data = await response.json();
 
             removeLoadingDots();
